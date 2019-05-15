@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.AppointMapper">
+	<resultMap id="BaseResultMap" type="Appoint">
+    <id column="aId" jdbcType="INTEGER" property="aId" />
+    <result column="dId" jdbcType="INTEGER" property="dId" />
+    <result column="aTime" jdbcType="INTEGER" property="aTime" />
+    <result column="aNum" jdbcType="INTEGER" property="aNum" />
+    </resultMap>
+    
+    
+	<insert id="insertTime" parameterType="Appoint">
+	insert into appoint(aId,dName,aTime,aNum
+      )
+	</insert>
+	
+	<!-- 根据医生id查找空闲时间和人数 -->
+	<select id="selectByDoctorName" parameterType="java.lang.String" resultMap="BaseResultMap">
+	 select * from appoint where dName = #{dName}
+	</select>
+	
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+	 select * from appoint where aId = #{aId}
+	</select>
+	
+	<update id="addAppointNum" parameterType="java.lang.Integer">
+	 update appoint set aNum=aNum+1 where aId=#{aId}
+	</update>
+	
+	<update id="subAppointNum" parameterType="java.lang.Integer">
+	 update appoint set aNum=aNum-1 where aId=#{aId}
+	</update>
+	
+	<delete id="deleteFreeTime" parameterType="java.lang.Integer">
+	  delete from appoint where aId=#{aId}
+	</delete>
+	
+</mapper>

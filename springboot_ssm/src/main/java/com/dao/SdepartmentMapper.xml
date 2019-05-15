@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.SdepartmentMapper" >
+
+      <!-- 查询 -->
+    <select id="findAllSdepartment" resultType="Sdepartment">
+        SELECT * FROM sdepartment  
+    </select>   
+  
+    <!-- 查询 -->
+    <select id="findAllById" resultType="Sdepartment">
+        SELECT * FROM sdepartment  where dId=#{id}
+    </select> 
+  
+</mapper>

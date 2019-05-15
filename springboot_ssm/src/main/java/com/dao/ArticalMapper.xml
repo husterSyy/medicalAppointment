@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.ArticalMapper" >
+
+     <!-- 查询 -->
+    <select id="recommendAllA" resultType="Artical">
+     select * from artical where aId in ( select aId from recartical
+     	   where  uName=#{name})
+    </select> 
+     
+     
+      <!-- 查询 -->
+    <select id="simpleSelect" resultType="Artical">
+        SELECT * FROM artical  where aTitle like CONCAT('%',#{name},'%')
+    </select>   
+  
+     <!-- 查询 -->
+    <select id="findAll" resultType="Artical">
+        SELECT * FROM artical
+    </select>   
+    
+   
+    <select id="ArticalByType" resultType="Artical">
+        SELECT * FROM artical where aType=#{type} 
+    </select> 
+    
+    <!-- 查询 -->
+        <!-- 查询 -->
+        <!--
+    <select id="findById" resultType="Artical">
+        SELECT * FROM artical where aId=#{id}
+    </select>  
+    --> 
+    <!-- 查询 -->
+  
+</mapper>

@@ -1,0 +1,17 @@
+eclipse.preferences.version=1
+encoding//src/main/java=UTF-8
+encoding//src/main/java/com/controller/ConsultController.java=UTF-8
+encoding//src/main/java/com/util/MyWebSocket.java=UTF-8
+encoding//src/main/resources=UTF-8
+encoding//src/main/resources/application.properties=UTF-8
+encoding//src/main/webapp/WEB-INF/jsp/diseaseDetail.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/jsp/mine.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/jsp/moreLogin.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/jsp/moreLogin1.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/jsp/register.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/jsp/registerSuccess.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/jsp/selectByDepartment.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/jsp/videoChat.jsp=UTF-8
+encoding//src/test/java=UTF-8
+encoding//src/test/resources=UTF-8
+encoding/<project>=UTF-8

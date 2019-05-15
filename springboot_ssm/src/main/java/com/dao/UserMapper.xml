@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.UserMapper" >
+
+
+<select id="findByMobile"  resultType="User">
+        SELECT * FROM user WHERE uMobile = #{mobile}
+    </select>
+
+
+ <!-- 修改 -->
+    <update id="changePassword" parameterType="User">
+        UPDATE user SET uPassword=#{npassword} where uName=#{name}
+    </update>
+ <!-- 修改 -->
+    <update id="changeEmail" parameterType="User">
+        UPDATE user SET uEmail=#{email} where uName=#{name}
+    </update>
+<select id="getUserByEmail"  resultType="User">
+        SELECT * FROM user WHERE uEmail = #{email}
+    </select>
+
+
+
+<select id="insertDoctor" resultType="UD">
+    insert into ud(uName,dName) values (#{uName},#{dName})
+    </select>
+
+ 
+ <select id="insertUser"  resultType="User">
+    insert into user(uName,uPassword,uEmail) values (#{username},#{password},#{email})
+    </select>
+
+    <select id="selectUserByName"  resultType="User">
+        SELECT * FROM user WHERE uName = #{name}
+    </select>
+       <select id="selectUserByNameAndPassword"  resultType="User">
+        SELECT * FROM user WHERE uName = #{name} and uPassword=#{password}
+    </select>
+     
+       <!-- 添加 -->
+    <insert id="save" parameterType="User">
+        INSERT INTO user(uId,uName,uPassword) VALUES(#{uId},#{uName},#{uPassword})
+    </insert>
+    <!-- 修改 -->
+    <update id="update" parameterType="User">
+        UPDATE user SET uName=#{uName},uPassword=#{uPassword} where uId=#{uId}
+    </update>
+    <!-- 删除 -->
+    <delete id="delete" parameterType="Integer">
+        DELETE FROM user WHERE uId=#{id}
+    </delete>
+    <!-- 查询 -->
+    <select id="findById" parameterType="Integer" resultType="User">
+        SELECT uId,uName,uPassword FROM user WHERE uId=#{id}
+    </select>
+    <!-- 查询 -->
+    <select id="findAll" resultType="User">
+        SELECT uId,uName,uPassword FROM user
+    </select>
+    <!-- 分页 -->
+    <select id="selectUsersByPage" parameterType="Integer" resultType="User">
+           SELECT TOP 10 * FROM
+        (SELECT ROW_NUMBER() OVER (ORDER BY ID) AS ROWNUMBER,* FROM user )
+        AS A WHERE ROWNUMBER>10*(#{page}-1)
+    </select>
+    
+    
+    
+    
+</mapper>

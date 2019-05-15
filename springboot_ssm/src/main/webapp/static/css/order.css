@@ -1,0 +1,61 @@
+@CHARSET "UTF-8";
+a{text-decoration: none;}
+a:link{color:#558CDD;}
+a:visited{color:#558CDD;}
+a:hover{color:#FFB444;}
+
+/* 全部订单界面列表 */
+.table-title{
+	height:50px;
+	width:60%;
+	text-align:center;
+	margin: 0 auto;
+	font-size: 13px;
+	line-height: 20px;
+	table-layout:fixed;
+}
+
+.order-table{
+	border:1px solid;
+	border-color:#DDDDDD;
+	background-color:#fdfdfd;
+	height:100px;
+	width:60%;
+	text-align:center;
+	margin: 0 auto;
+	font-size: 13px;
+	line-height: 20px;
+	color: #6F6F6F;
+	margin-bottom:40px;
+	table-layout:fixed;
+}
+
+/* 单独订单界面 */
+.order{
+	width:40%;
+	margin: 0 auto;
+}
+
+.orderdetail-title{
+	border:1px solid;
+	border-bottom:none;
+	border-color:#DDDDDD;
+	font-size: 16px;
+	font-weight:bold;
+	line-height: 40px;
+	text-align:center;
+	color: #6F6F6F;
+	width:100px;
+}
+
+.order-inner{
+	border:1px solid;
+	border-color:#DDDDDD;
+	font-size: 13px;
+	line-height: 25px;
+	padding-top:30px;
+	padding-bottom:50px;
+	padding-left:60px;
+	color: #6F6F6F;
+}
+

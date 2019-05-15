@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.HospitalMapper" >
+ 
+ <insert id="insertHospital">
+    insert into uh(uName,hName) values (#{uName},#{hName})
+    </insert>
+ 
+ <select id="findAllHByuName" resultType="Hospital" >
+    select * from hospital where hName in (select hName from uh where uName=#{uname})
+   
+   <!-- like CONCAT('%',#{name},'%')-->
+  </select>
+
+ <select id="findAllHByDisease" resultType="Hospital" >
+    select * from hospital where hName in (select hName from doctor where dGoodat like concat('%',#{name},'%'))
+   <!-- like CONCAT('%',#{name},'%')-->
+  </select>
+
+  <select id="findByName" resultType="Hospital" >
+    SELECT * FROM hospital WHERE hName=#{name}
+   <!-- like CONCAT('%',#{name},'%')-->
+  </select>
+  
+ 
+  <select id="findByDepartment" resultType="Hospital" >
+    SELECT * FROM hospital where  hId in(select hId from hd where dId in (select dId from department  WHERE dName=#{name} ))
+   <!-- like CONCAT('%',#{name},'%')-->
+  </select>
+  
+     <!-- 查询 -->
+    <select id="findAllH" resultType="Hospital">
+     	   SELECT * FROM hospital
+    </select>   
+    
+   <!-- 查询 -->
+    <select id="recommendAllH" resultType="Hospital">
+     	 select * from hospital where hId in ( select hId from recHospital
+     	   where  uName=#{name})
+           
+         <!-- select hospital.*,recHospital.hId from hospital,recHospital where recHospital.hId=hospital.hId and 
+     	  recHospital.uName=#{name}   -->
+     	  
+    </select>   
+    
+    
+    
+      <!-- 查询 -->
+    <select id="simpleSelect" resultType="Hospital">
+        SELECT * FROM hospital  where hName like CONCAT('%',#{name},'%')
+    </select>   
+    
+    
+    <!-- 分页 -->
+    <select id="selectHospitalsByPage" parameterType="Integer" resultType="com.domain.Hospital">
+           SELECT TOP 10 * FROM
+        (SELECT ROW_NUMBER() OVER (ORDER BY hId) AS ROWNUMBER,* FROM hospital )
+        AS A WHERE ROWNUMBER>10*(#{id}-1)
+    </select>
+ 
+ 
+    <select id="SelectByMore"  resultType="Hospital">
+        select * from hospital
+        <where>
+        
+           <if test="name!=null">
+            pName=#{name}
+             </if>
+             
+           <if test="category!=null">
+              and hCategory =#{category}  <!--like concat ('%',#{type},'%')-->
+              </if>
+              
+               <if test="type!=null">
+              and hType =#{type}  <!--like concat ('%',#{type},'%')-->
+              </if>
+              
+              <if test="rating!=null">
+               and hRating>#{rating}
+               </if>
+         </where>
+     </select>
+ 
+   
+    
+  <select id="findAllByRatingD" resultType="Hospital" >
+ 
+    SELECT * FROM hospital order by hRating desc
+  
+  </select>
+  
+   <select id="findAllByRatingA" resultType="Hospital" >
+ 
+   SELECT * FROM hospital order by hRating asc
+  </select>
+  
+   <select id="findAllByType" resultType="Hospital">
+ 
+    SELECT * FROM hospital WHERE hType like CONCAT('%',#{type},'%')
+  
+  </select>
+  
+  <select id="findAllByConcreteDistance" resultType="Hospital"> 
+  <!--
+  SELECT * from hospital where lng>#{minlng} and lng<#{maxlng} and lat>#{minlat} lat<#{maxlat} 
+  -->
+  </select>
+  
+   <select id="findAllByDistance" resultType="Hospital">
+  SELECT *,
+     (POWER(MOD(ABS(114.3162001-lng),360),2) + POWER(ABS(30.58108413-lat),2)) AS distance   FROM hospital
+       ORDER BY distance asc 
+    <!--   
+    SELECT * FROM hospital order by hDistance asc
+   -->
+  </select>
+  
+   <select id="findAllByCategory" resultType="Hospital" >
+
+    SELECT * FROM hospital WHERE hCategory like CONCAT('%',#{category},'%')
+   
+  </select>
+   
+    
+</mapper>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.DiseaseMapper" >
+
+    
+  
+    <!-- 查询 -->
+    <select id="findAllById" resultType="Disease">
+        SELECT * FROM disease  where dId=#{id} limit 15
+    </select> 
+     <!-- 查询 -->
+     <!--
+    <select id="findByName" resultType="Disease">
+        SELECT * FROM disease  where sName=#{name}
+    </select> 
+  -->
+  
+</mapper>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.DoctorMapper" >
+
+  <select id="selectDoctorByNameAndPassword"  resultType="Doctor">
+        SELECT * FROM doctor WHERE dName = #{name} and dPassword=#{password}
+    </select>
+
+<!-- 查询 -->
+    <select id="recommendAll" resultType="Doctor">
+     select * from doctor where dId in ( select dId from recdoctor
+     	   where  uName=#{name})
+    </select> 
+
+<!-- 查询 -->
+    <select id="findIdByName" resultType="Doctor">
+      select * from doctor where  dName =#{name}
+    </select> 
+
+ <!-- 查询 -->
+    <select id="findAllDByuName" resultType="Doctor">
+      select * from doctor where  dName in (select dName from ud where uName=#{uname})
+    </select> 
+
+
+   <!-- 查询 -->
+    <select id="findAllByDisease" resultType="Doctor">
+       SELECT * FROM doctor WHERE   dGoodat like CONCAT('%',#{name},'%')
+    </select> 
+
+      <!-- 查询 -->
+    <select id="simpleSelect" resultType="Doctor">
+        SELECT * FROM doctor  where dName like CONCAT('%',#{name},'%')
+    </select>   
+  
+     <!-- 查询 -->
+    <select id="findAll" resultType="Doctor">
+        SELECT * FROM doctor 
+    </select>   
+    <!-- 查询 -->
+    
+    
+     <select id="findByMore"  resultType="Doctor">
+        select * from doctor
+        <where>   
+           <if test="type!=null">
+              dType =#{type}
+           </if>
+           <if test="department!=null">
+               and  sdName like concat ('%',#{department},'%')
+           </if>        
+           <if test="rating!=null">
+              and dRating>#{rating}
+            </if>
+         </where>
+     </select>
+    
+    <!--
+    <select id="findByName" resultType="Doctor">
+        SELECT doctor.*,rating.* FROM doctor,rating where dName=#{name} and rating.dId=doctor.dId
+    </select>   
+    -->
+       <select id="findByRatingD" resultType="Doctor">
+        SELECT * FROM doctor order by dRating desc
+    </select> 
+    
+       <select id="findByRatingA" resultType="Doctor">
+         SELECT * FROM doctor order by dRating asc
+    </select> 
+    
+      <select id="findByType" resultType="Doctor">
+       SELECT * FROM doctor where dType =#{type}
+       <!--like CONCAT('%',#{type},'%')-->
+    </select> 
+    
+       <select id="findByInquisitionD" resultType="Doctor">
+        SELECT * FROM doctor order by dInquisition desc
+    </select> 
+  
+     <select id="findByInquisitionA" resultType="Doctor">
+        SELECT * FROM doctor order by dInquisition asc
+    </select> 
+</mapper>

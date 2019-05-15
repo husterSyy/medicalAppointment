@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.OrderitemMapper">
+  <resultMap id="BaseResultMap" type="com.domain.Orderitem">
+    <id column="oid" jdbcType="INTEGER" property="oid" />
+    <result column="state" jdbcType="TINYINT" property="state" />
+    <result column="money" jdbcType="REAL" property="money" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="dname" jdbcType="VARCHAR" property="dname" />
+    <result column="orderTime" jdbcType="TIMESTAMP" property="ordertime" />
+    <result column="appointedTime" jdbcType="INTEGER" property="appointedtime" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="detail" jdbcType="VARCHAR" property="detail" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    oid, state, money, uid, dname, orderTime, appointedTime, address, detail
+  </sql>
+  <select id="selectByExample" parameterType="com.domain.OrderitemExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from orderitem
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from orderitem
+    where oid = #{oid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from orderitem
+    where oid = #{oid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.domain.OrderitemExample">
+    delete from orderitem
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.domain.Orderitem">
+    insert into orderitem (oid, state, money, 
+      uid, dname, orderTime, 
+      appointedTime, address, detail
+      )
+    values (#{oid,jdbcType=INTEGER}, #{state,jdbcType=TINYINT}, #{money,jdbcType=REAL}, 
+      #{uid,jdbcType=INTEGER}, #{dname,jdbcType=VARCHAR}, #{ordertime,jdbcType=TIMESTAMP}, 
+      #{appointedtime,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, #{detail,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.domain.Orderitem">
+    insert into orderitem
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="oid != null">
+        oid,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="dname != null">
+        dname,
+      </if>
+      <if test="ordertime != null">
+        orderTime,
+      </if>
+      <if test="appointedtime != null">
+        appointedTime,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="detail != null">
+        detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="oid != null">
+        #{oid,jdbcType=INTEGER},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=TINYINT},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=REAL},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="dname != null">
+        #{dname,jdbcType=VARCHAR},
+      </if>
+      <if test="ordertime != null">
+        #{ordertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appointedtime != null">
+        #{appointedtime,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null">
+        #{detail,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.domain.OrderitemExample" resultType="java.lang.Long">
+    select count(*) from orderitem
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update orderitem
+    <set>
+      <if test="record.oid != null">
+        oid = #{record.oid,jdbcType=INTEGER},
+      </if>
+      <if test="record.state != null">
+        state = #{record.state,jdbcType=TINYINT},
+      </if>
+      <if test="record.money != null">
+        money = #{record.money,jdbcType=REAL},
+      </if>
+      <if test="record.uid != null">
+        uid = #{record.uid,jdbcType=INTEGER},
+      </if>
+      <if test="record.dname != null">
+        dname = #{record.dname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ordertime != null">
+        orderTime = #{record.ordertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.appointedtime != null">
+        appointedTime = #{record.appointedtime,jdbcType=INTEGER},
+      </if>
+      <if test="record.address != null">
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.detail != null">
+        detail = #{record.detail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update orderitem
+    set oid = #{record.oid,jdbcType=INTEGER},
+      state = #{record.state,jdbcType=TINYINT},
+      money = #{record.money,jdbcType=REAL},
+      uid = #{record.uid,jdbcType=INTEGER},
+      dname = #{record.dname,jdbcType=VARCHAR},
+      orderTime = #{record.ordertime,jdbcType=TIMESTAMP},
+      appointedTime = #{record.appointedtime,jdbcType=INTEGER},
+      address = #{record.address,jdbcType=VARCHAR},
+      detail = #{record.detail,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.domain.Orderitem">
+    update orderitem
+    <set>
+      <if test="state != null">
+        state = #{state,jdbcType=TINYINT},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=REAL},
+      </if>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="dname != null">
+        dname = #{dname,jdbcType=VARCHAR},
+      </if>
+      <if test="ordertime != null">
+        orderTime = #{ordertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appointedtime != null">
+        appointedTime = #{appointedtime,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null">
+        detail = #{detail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where oid = #{oid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.domain.Orderitem">
+    update orderitem
+    set state = #{state,jdbcType=TINYINT},
+      money = #{money,jdbcType=REAL},
+      uid = #{uid,jdbcType=INTEGER},
+      dname = #{dname,jdbcType=VARCHAR},
+      orderTime = #{ordertime,jdbcType=TIMESTAMP},
+      appointedTime = #{appointedtime,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      detail = #{detail,jdbcType=VARCHAR}
+    where oid = #{oid,jdbcType=INTEGER}
+  </update>
+  
+  
+  <select id="getLastPrimaryKey" resultType="java.lang.Integer">
+  select @@IDENTITY
+  </select>
+  
+</mapper>

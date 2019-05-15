@@ -1,0 +1,142 @@
+.chat{
+	width:70%;
+	margin:0 auto;
+}
+
+/* 左侧对话信息 */
+.chat-info{
+	width:20%;
+	float:left;
+	line-height: 20px;
+	background-color: #666666;
+}
+
+.chat-info-portrait{
+	padding: 30px;
+	text-align: center;
+}
+
+.chat-info-text{
+	border-top:1px solid;
+	padding:20px;
+	line-height: 30px;
+	font-size: 14px;
+	color: #FFFFFF;
+}
+
+/* 对话框 */
+.chat-window{
+	float:left;
+	width:60%;
+	border-left: 40px solid;
+	border-right: 40px solid;
+	border-top: 20px solid;
+	border-bottom: 40px solid;
+	border-color:#CDEDD4;
+	background-color:#CDEDD4;
+}
+
+.chat-title{
+	background-color:#CDEDD4;
+	text-align: center;
+	padding-bottom: 20px;
+}
+
+#historyText{
+	border:none;
+	width:100%;
+	height:300px;
+	padding:20px;
+	line-height: 2;
+	font-size:15px;
+	resize: none;
+}
+
+#inputText{
+	border:none;
+	width:100%;
+	height:100px;
+	padding:10px;
+	font-size:15px;
+	line-height: 1.5;
+	resize: none;
+}
+
+/* 分隔 */
+.seperate{
+	height:40px;
+	background-color:#CDEDD4;
+	padding:25px;
+}
+
+#button-area{
+	text-align: right;
+	padding-right: 5%;
+	padding-top:5%;
+}
+
+.chat-list-item{
+	border:5px solid white;
+	width:80%;
+	line-height:30px;
+	color:#FFFFFF;
+	padding:20px;
+	text-align: center;
+}
+
+.button1{
+	background-color: #5DAFE6;
+	color:#FFFFFF;
+	padding:10px;
+	font-size: 14px;
+	text-align: center;
+}
+
+.button2{
+	background-color: #F8A0B1;
+	color:#FFFFFF;
+	padding:10px;
+	font-size: 14px;
+	text-align: center;
+}
+
+.button1:HOVER{
+	opacity: 0.8;
+}
+
+.button2:HOVER{
+	opacity: 0.8;
+}
+
+span{
+	font-size: 13px;
+	color:#777777;
+}
+
+#show-img-upload{
+	background-color: #FFFFFF;
+	position:absolute;
+	left:65%;
+	top:50%;
+}
+
+#show-img-upload-inner{
+	border:2px solid;
+	background-color:#E4FFBB;
+	border-color:#9BA0A8;
+	padding: 10px;
+	font-size: 14px;
+}
+
+.show-img-download{
+	background-color: #CCCCCC;
+	position:absolute;
+	top:20%;
+	left:80%;
+	padding: 20px;
+	color: #FFFFFF;
+}
+
+.show-img-download-each:hover{
+	width:120px;
+}
